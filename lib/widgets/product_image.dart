@@ -6,11 +6,12 @@ class ProductImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+      padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
       child: Container(
         width: double.infinity,
         height: 450,
-        child: ClipRRect(
+        decoration: _buildBoxDecoration(),
+        child: const ClipRRect(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(45),
             topRight: Radius.circular(45),
@@ -21,7 +22,6 @@ class ProductImage extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        decoration: _buildBoxDecoration(),
       ),
     );
   }
