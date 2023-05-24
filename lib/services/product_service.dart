@@ -11,10 +11,12 @@ class ProductService extends ChangeNotifier {
   //TODO hacer fetch de productos
 
   ProductService() {
-    this.loadProducts();
+    loadProducts();
   }
-// <List<Product>>
-  Future loadProducts() async {
+//
+  Future<List<Product>> loadProducts() async {
+    isLoading = true;
+    notifyListeners();
     final url = Uri.https(_baseUrl, 'products.json');
     final response = await http.get(url);
     final Map<String, dynamic> productsMap = jsonDecode(response.body);
@@ -23,7 +25,8 @@ class ProductService extends ChangeNotifier {
       tempProduct.id = key;
       products.add(tempProduct);
     });
-
-    print(products[0].name);
+    isLoading = false;
+    notifyListeners();
+    return products;
   }
 }
